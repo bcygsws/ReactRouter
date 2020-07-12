@@ -2,8 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // 如果要使用路由模块，yarn add react-router-dom,导入路由模块，采用按需导入的方式
-import { HashRouter, Route, Link } from 'react-router-dom';
+// import { HashRouter, Route, Link } from 'react-router-dom';
 import App from './component/App.jsx';
+// 全局导入Ant Design的样式表
+import 'antd/dist/antd.css';
 /* 
 1.其中，HashRouter表示一个路由根容器，将来所有路由相关的东西，都要包裹在HashRouter容器中。并且，一个网站中只要使用一次HashRouter就好了
 2.route 表示一个路由规则，在route上有两个比较重要的路由属性，分别是path和component

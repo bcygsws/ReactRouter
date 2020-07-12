@@ -84,8 +84,10 @@ module.exports = {
     },
     module: {
         rules: [{
+                // 注意：1.一般我们使用的第三方UI组件库的样式表都是以.css文件为后缀名，我们最好不要把.css为后缀的文件启用模块化
+                // 2.我们推荐不要自己手写.css文件，而是使用语法更加清晰的.scss文件或less文件，来书写样式。这样我们把sass或者less文件模块化就好了
                 test: /\.css$/,
-                include: [path.resolve(__dirname, 'src')],
+                include: [path.resolve(__dirname, 'src') || path.resolve('./')],
                 exclude: /node_modules/,
                 use: [
                     // 配置了{ loader: miniCssExtractPlugin.loader }，就不用配置style-loader
@@ -97,7 +99,6 @@ module.exports = {
                             /* 以前版本是通过true开启，相关配置连着写
                             modules:true,
                             localIdentName: '[name]__[local]--[hash:base64:5]'
-
                             */
                             modules: {
                                 // 重新生成的css类名
