@@ -22,8 +22,6 @@ export default class App extends React.Component {
         <div>
           <h1>这是网站的App根组件</h1>
           <hr />
-          {/* 日期选择器 */}
-          <DatePicker></DatePicker>
           <Link to="/home">首页</Link>&nbsp;
           {/* <Link to="/movie">电影</Link>&nbsp; */}
           {/* Route中匹配规则不变，Link链接中地址改造成下面这样，还是能匹配到组件Movie。原因是： */}
@@ -39,6 +37,7 @@ export default class App extends React.Component {
           <hr />
           <Route path="/about" component={About}></Route>
           <hr />
+          <DatePicker></DatePicker>
         </div>
       </HashRouter>
     );

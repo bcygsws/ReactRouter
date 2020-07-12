@@ -128,6 +128,33 @@ module.exports = {
                 ]
             },
             {
+                // 注意：1.一般我们使用的第三方UI组件库的样式表都是以.css文件为后缀名，我们最好不要把.css为后缀的文件启用模块化
+                // 2.我们推荐不要自己手写.css文件，而是使用语法更加清晰的.scss文件或less文件，来书写样式。这样我们把sass或者less文件模块化就好了
+                test: /\.css$/,
+                include: /node_modules/,
+                use: [
+                    // 配置了{ loader: miniCssExtractPlugin.loader }，就不用配置style-loader
+                    // {loader:'style-loader'} //将处理结束的css代码存到js中，运行时嵌入到<style></style>标签中，然后挂载到页面上
+                    { loader: miniCssExtractPlugin.loader },
+                    {
+                        loader: 'css-loader'
+                            // 由于引用的第三方UI库的样式文件通常以.css为后缀，所以，不启动模块化，否则将影响组件样式
+
+                        // options: {
+                        //     /* 以前版本是通过true开启，相关配置连着写
+                        //     modules:true,
+                        //     localIdentName: '[name]__[local]--[hash:base64:5]'
+                        //     */
+                        //     modules: {
+                        //         // 重新生成的css类名
+                        //         localIdentName: '[name]__[local]--[hash:base64:5]'
+                        //     }
+                        // }
+                    }, //css加载器，使得webpack能够识别css代码
+                    { loader: 'postcss-loader' } //承载autoprefixer功能，为css添加前缀
+                ]
+            },
+            {
                 test: /\.scss$/,
                 include: [path.resolve(__dirname, 'src')],
                 exclude: /node_modules/,
